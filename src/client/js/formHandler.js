@@ -21,7 +21,7 @@ function handleSubmit(event) {
   let DurDays = Math.ceil(timesDur / (1000 * 3600 * 24));
 
   //get data from geonames API
-  getData(geonamesURL, city, userName).then(function (data) {
+  pullData(geonamesURL + city + userName + "&maxRows=1").then(function (data) {
     // console.log(data);
     //Add data
     postData("http://localhost:8081/add", {
@@ -37,16 +37,15 @@ function handleSubmit(event) {
     });
   });
 }
-//fetch geonames to get and post data
-const getData = async (url, city, userName) => {
-  const res = await fetch(url + city + userName + "&maxRows=1");
+//Helper functions to pull Data.
+const pullData = async (url = "") => {
+  const response = await fetch(url);
+
   try {
-    const data = await res.json();
-    console.log(data);
+    const data = response.json();
     return data;
-  } catch (error) {
-    console.log("error", error);
-    // appropriately handle the error
+  } catch (err) {
+    alert(err);
   }
 };
 //fetch to post data to the server

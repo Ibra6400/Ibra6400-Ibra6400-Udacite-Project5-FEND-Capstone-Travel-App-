@@ -20,7 +20,7 @@ describe("Route /all should be running", () => {
 
 describe("Test Weatherbi API", () => {
   test("It should be defined", async () => {
-    const WeatherbitAPI = process.env.WeatherbitAPI;
+    const WeatherbitAPI = "7e80dfbccd044415b706155a9d58c0af";
     const WeatherbiURL = "https://api.weatherbit.io/v2.0/forecast/daily?";
     const lat = 45.46427;
     const long = 9.18951;
@@ -36,7 +36,7 @@ describe("Test Weatherbi API", () => {
 
 describe("Test Weatherbi API", () => {
   test("It should be defined", async () => {
-    const pixabayKEY = process.env.pixabayKEY;
+    const pixabayKEY = "18188680-f0aeacaeef1d75970f6967ec0";
     const pixabayURL = "https://pixabay.com/api/?";
     const location = "London";
     const response = await fetch(

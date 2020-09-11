@@ -16,16 +16,16 @@ app.use(express.static("website"));
 
 // const mockAPIResponse = require('./mockAPI.js')
 
-const dotenv = require("dotenv");
-dotenv.config();
+// const dotenv = require("dotenv");
+// dotenv.config();
 
 const fetch = require("node-fetch");
 
 // API key and url.
-const WeatherbitAPI = process.env.WeatherbitAPI;
+const WeatherbitAPI = "7e80dfbccd044415b706155a9d58c0af";
 const WeatherbiURL = "https://api.weatherbit.io/v2.0/forecast/daily?";
 
-const pixabayKEY = process.env.pixabayKEY;
+const pixabayKEY = "18188680-f0aeacaeef1d75970f6967ec0";
 const pixabayURL = "https://pixabay.com/api/?";
 
 // console.log(`Your API key is ${process.env.WeatherbitAPI}`);
@@ -73,13 +73,23 @@ function addData(req, res) {
 
   //represents the eventual completion (or failure) of an asynchronous operation and its resulting value.
   const promise_weather = new Promise((resolutionFunc, rejectionFunc) => {
-    getWeather(lat, lon).then(function (res) {
+    pullData(
+      WeatherbiURL + "lat=" + lat + "&lon=" + lon + "&key=" + WeatherbitAPI
+    ).then(function (res) {
       resolutionFunc(res);
     });
   });
 
   const promise_photo = new Promise((resolutionFunc, rejectionFunc) => {
-    getpixabay(location).then(function (res) {
+    pullData(
+      pixabayURL +
+        "key=" +
+        pixabayKEY +
+        "&q=" +
+        encodeURIComponent(location) +
+        "&image_type=photo" +
+        "&category=places"
+    ).then(function (res) {
       resolutionFunc(res);
     });
   });
@@ -118,36 +128,15 @@ function addData(req, res) {
   });
 }
 
-// Fetch Weatherbi to get wheather data
-const getWeather = async (lat, lon) => {
-  const requestURL =
-    WeatherbiURL + "lat=" + lat + "&lon=" + lon + "&key=" + WeatherbitAPI;
-  const res = await fetch(requestURL);
-  try {
-    const data = await res.json();
-    return data;
-  } catch (error) {
-    console.log("error", error);
-  }
-};
+//Helper functions to pull Data.
+const pullData = async (url = "") => {
+  const response = await fetch(url);
 
-// Fetch pixabay to get location photo data
-const getpixabay = async (loc) => {
-  const requestURL =
-    pixabayURL +
-    "key=" +
-    pixabayKEY +
-    "&q=" +
-    encodeURIComponent(loc) +
-    "&image_type=photo" +
-    "&category=places";
-
-  const res = await fetch(requestURL);
   try {
-    const data = await res.json();
+    const data = response.json();
     return data;
-  } catch (error) {
-    console.log("error", error);
+  } catch (err) {
+    alert(err);
   }
 };
 

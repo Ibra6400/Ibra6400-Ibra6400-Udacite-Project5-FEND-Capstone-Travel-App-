@@ -30,7 +30,7 @@ describe("Test geonames API", () => {
     const geonamesURL = "http://api.geonames.org/searchJSON?q=";
     const userName = "&username=ibra6400";
     const city = "London";
-    const response = await fetch(geonamesURL + userName + city);
+    const response = await fetch(geonamesURL + city + userName);
     expect(response).toBeDefined();
     console.log(response);
   });
