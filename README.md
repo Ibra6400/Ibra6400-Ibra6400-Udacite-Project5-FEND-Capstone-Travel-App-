@@ -19,17 +19,17 @@ After you clone, you have to install packages to run the app:
   **Step 2: Run the Project**:<br/>
   To run the project there are two modes development mode and production mode. to test the functions of the project there is test mode. the steps below shows how to run each mode<br/>
   
-  *development mode*<br/>
+  **development mode**<br/>
 
 To run the webpack dev server at port 8080
--npm run build-dev
-*production mode*<br/>
+- npm run build-dev
+**production mode**<br/>
 
-npm run build-prod to generate a dist folder for prod
-npm run start to run the server on port 8081
-*test mode*
+- npm run build-prod to generate a dist folder for prod
+- npm run start to run the server on port 8081
+**test mode**
 
--npm run test
+- npm run test
   
 
 ## Dependencies
