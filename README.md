@@ -15,6 +15,7 @@ After you clone, you have to install packages to run the app:
   * Weatherbit API shows daily and future weathe sign up [here](https://www.weatherbit.io/account/create)
   -  Pixabay API shows location image sign up [here](https://pixabay.com/api/docs/)
   
+  
   **Step 2: Run the Project**:<br/>
   To run the project there are two modes development mode and production mode. to test the functions of the project there is test mode. the steps below shows how to run each mode<br/>
   
