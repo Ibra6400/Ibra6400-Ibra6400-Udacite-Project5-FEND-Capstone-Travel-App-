@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Travel Planner</title>
+        
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="header">
+        
+              <h1 id="title">Travel Planner</h1>
+            </div>
+       
+            <section id="add-trip-container">
+        
+        
+              <form id="add-trip-form">
+                <div class="trip-location section">
+                  <p for="city"> My trip to:</p>
+                  <input type="text" id="city" required placeholder=" Enter Location">
+                </div>
+        
+                <div class="trip-departing section">
+                  <p for="date">Departing: </p>
+                  <input type="date" id="date" required placeholder="DD/MM/YYYY">
+                </div>
+        
+                <div class="trip-submit">
+                  <input type="submit" id="btn" value="Submit Trip">
+                </div>
+              </form>
+            </section>
+        
+            <section class= "trip-informtion-box unactive">
+              <div class="trip-informtion">
+                <div class="lefSide">
+                  <img class="city-image" src="" alt="">
+                </div>
+                <div class="rightSide">
+                  <p id="trip-to"> </p>
+                  <p id="departing"></p>
+                  <div class="weather-display">
+                    <h4>Typical weather for then is:</h4>
+                    <p id="Temp"> </p>
+                    <p id="duration"></p>
+                </div>
+                <div>
+                </div>
+    
+              </div>
+            </section>
+        
+        
+            <footer>
+              <div class="box">
+                <div class="developer box-item">
+                  <i>Develop by Ibrahim</i>
+                </div>
+                <div class="development-Year box-item">
+                  &copy;2020
+                </div>
+                <div class="Course box-item">
+                  FEND Udacity
+                </div>
+        
+              </div>
+              
+             
+              <script>
+ // Check that service workers are supported
+ if ('serviceWorker' in navigator) {
+     // Use the window load event to keep the page load performant
+     window.addEventListener('load', () => {
+         navigator.serviceWorker.register('/service-worker.js');
+     });
+ }
+</script>
+
+
+
+    </body>
+</html>
