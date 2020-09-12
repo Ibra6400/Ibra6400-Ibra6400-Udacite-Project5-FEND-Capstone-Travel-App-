@@ -4,29 +4,30 @@ const userName = "&username=ibra6400";
 
 function handleSubmit(event) {
   event.preventDefault();
-  let city = document.getElementById("city").value;
-  let date = document.getElementById("date").value;
+    let city = document.getElementById("city").value;
+  let departingDate = document.getElementById("departingDate").value;
+  let returnDate = document.getElementById("returnDate").value;
   // check the user input
-  if (city == "" || date == "") {
-    alert("Location or Departing date should be enterned");
+  if (city == "" || departingDate == "" || returnDate == "") {
+    alert("Location, Departing or Return dates should be enterned");
     return;
   }
-   // start Additional Feature
+  // Additional Feature
 
   // Add end date and display length of trip.
   //calculate the length of trip current day and departing day
   const countdown = () => {
     //convert days in milliseconds
-    const currentDate = new Date().getTime();
-    const departingDate = new Date(date).getTime();
-    const timesDur = Math.abs(departingDate - currentDate);
-    const DurDays = Math.ceil(timesDur / (1000 * 3600 * 24));
-    return DurDays;
+
+    const departing_Date = new Date(departingDate).getTime();
+    const returnt_Date = new Date(returnDate).getTime();
+    const timesDiff = Math.abs(returnt_Date - departing_Date);
+    const DateDiff = Math.ceil(timesDiff / (1000 * 3600 * 24));
+    return DateDiff;
   };
   //store countdown functioin
   const tripLength = countdown();
   
-  // end Additional Feature
   pullData(geonamesURL + city + userName + "&maxRows=1").then(function (data) {
     // console.log(data);
     //Add data
@@ -96,7 +97,7 @@ const updateUI = async () => {
     document.getElementById("Temp").innerHTML = wether;
     document.getElementById(
       "duration"
-    ).innerHTML = `${allData[0].location}, ${allData[0].countryName} is ${allData[0].duration}  days away `;
+    ).innerHTML = `Trip Length: ${allData[0].duration} `;
   } catch (error) {
     console.log("error", error);
   }
