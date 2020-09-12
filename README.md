@@ -43,8 +43,11 @@ to pass all test the production mode should run first
 - Express
 - Babel
 
+## Additional Features
+- Add end date and display length of trip.
 ## Note
 -  geonames API is in the client side js/formHandler.js
 -  Weatherbit API and Pixabay API is in the server side server/index.js
 - using promise and promise.all() functions for pulling data from Weatherbit API and Pixabay API  to handle the respond
 -  the app test the funcions, server expres and API fetching 
+- culcuate function for length of trip is added in fromhandle.js
