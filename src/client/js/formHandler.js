@@ -11,16 +11,22 @@ function handleSubmit(event) {
     alert("Location or Departing date should be enterned");
     return;
   }
-  // Get duration
-  //convert days in milliseconds
-  const currentDay = new Date().getTime();
-  const departingDay = new Date(date).getTime();
+   // start Additional Feature
 
-  // calculate the duraion (Dur) between current day and departing day
-  let timesDur = Math.abs(departingDay - currentDay);
-  let DurDays = Math.ceil(timesDur / (1000 * 3600 * 24));
-
-  //get data from geonames API
+  // Add end date and display length of trip.
+  //calculate the length of trip current day and departing day
+  const countdown = () => {
+    //convert days in milliseconds
+    const currentDate = new Date().getTime();
+    const departingDate = new Date(date).getTime();
+    const timesDur = Math.abs(departingDate - currentDate);
+    const DurDays = Math.ceil(timesDur / (1000 * 3600 * 24));
+    return DurDays;
+  };
+  //store countdown functioin
+  const tripLength = countdown();
+  
+  // end Additional Feature
   pullData(geonamesURL + city + userName + "&maxRows=1").then(function (data) {
     // console.log(data);
     //Add data
@@ -30,7 +36,7 @@ function handleSubmit(event) {
       longitude: data.geonames[0].lng,
       countryName: data.geonames[0].countryName,
       date: date,
-      duration: DurDays,
+      duration: tripLength,
     }).then(() => {
       //post data to the end user
       updateUI();
