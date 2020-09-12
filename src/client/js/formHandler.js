@@ -4,7 +4,7 @@ const userName = "&username=ibra6400";
 
 function handleSubmit(event) {
   event.preventDefault();
-    let city = document.getElementById("city").value;
+  let city = document.getElementById("city").value;
   let departingDate = document.getElementById("departingDate").value;
   let returnDate = document.getElementById("returnDate").value;
   // check the user input
@@ -27,7 +27,7 @@ function handleSubmit(event) {
   };
   //store countdown functioin
   const tripLength = countdown();
-  
+
   pullData(geonamesURL + city + userName + "&maxRows=1").then(function (data) {
     // console.log(data);
     //Add data
@@ -36,7 +36,7 @@ function handleSubmit(event) {
       latitude: data.geonames[0].lat,
       longitude: data.geonames[0].lng,
       countryName: data.geonames[0].countryName,
-      date: date,
+      date: departingDate,
       duration: tripLength,
     }).then(() => {
       //post data to the end user
@@ -96,7 +96,7 @@ const updateUI = async () => {
     ).innerHTML = `Departing:${allData[0].date}`;
     document.getElementById("Temp").innerHTML = wether;
     document.getElementById(
-      "duration"
+      "TripLength"
     ).innerHTML = `Trip Length: ${allData[0].duration} `;
   } catch (error) {
     console.log("error", error);
